@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ledger — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header (Relative paths set up one folder level) --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Layout Grids --- */
+        .ledger-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        .back-link {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        /* --- Sortable Data Architecture --- */
+        .table-wrapper {
+            overflow-x: auto;
+            border: 3px solid var(--text-main);
+            box-shadow: 6px 6px 0px var(--accent-cobalt);
+            background: #FFFFFF;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-body);
+            text-align: left;
+            min-width: 500px;
+        }
+
+        th {
+            background-color: var(--text-main);
+            color: #FFFFFF;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 14px 18px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+
+        th:hover {
+            background-color: var(--accent-cobalt);
+        }
+
+        th::after {
+            content: ' ↕';
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #E2E8F0;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: rgba(37, 99, 235, 0.03);
+            color: var(--text-main);
+        }
+
+        .td-mono {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+        
+        .td-bold {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .ledger-layout { grid-template-columns: 1fr; }
+            .title-wrapper { position: static; margin-bottom: 20px; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">[About]</a></li>
+                    <li><a href="../journey.html">[Journey]</a></li>
+                    <li><a href="../writings.html">[Writings]</a></li>
+                    <li><a href="../coffee.html">[Coffee]</a></li>
+                    <li><a href="../favourites.html" class="active">[Favourites]</a></li>
+                    <li><a href="../resume.html">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+                    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="ledger-layout">
+                <div class="title-wrapper">
+                    <a href="../favourites.html" class="back-link">← Return to Faves</a>
+                    <h1>THE<br>LEDGER.</h1>
+                </div>
+
+                <div class="content-body">
+                    <div class="table-wrapper">
+                        <table id="movieTable">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0, 'text')">Movie Title</th>
+                                    <th onclick="sortTable(1, 'date')">Date Watched</th>
+                                    <th onclick="sortTable(2, 'num')">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="td-bold">Project Hail Mary</td>
+                                    <td class="td-mono" data-date="2026-04-12">12-04-2026</td>
+                                    <td class="td-mono td-bold" data-val="8.0">⭐⭐⭐⭐⭐⭐⭐⭐☆☆ <span style="font-weight:400; opacity:0.6;">(8/10)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-bold">Inglourious Basterds</td>
+                                    <td class="td-mono" data-date="2025-11-04">04-11-2025</td>
+                                    <td class="td-mono td-bold" data-val="9.5">⭐⭐⭐⭐⭐⭐⭐⭐⭐☆ <span style="font-weight:400; opacity:0.6;">(9.5/10)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-bold">Across the Spider-Verse</td>
+                                    <td class="td-mono" data-date="2026-02-20">20-02-2026</td>
+                                    <td class="td-mono td-bold" data-val="9.0">⭐⭐⭐⭐⭐⭐⭐⭐⭐☆ <span style="font-weight:400; opacity:0.6;">(9/10)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-bold">Interstellar</td>
+                                    <td class="td-mono" data-date="2024-08-15">15-08-2024</td>
+                                    <td class="td-mono td-bold" data-val="8.0">⭐⭐⭐⭐⭐⭐⭐⭐☆☆ <span style="font-weight:400; opacity:0.6;">(8/10)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-bold">F1 Movie</td>
+                                    <td class="td-mono" data-date="2026-06-05">05-06-2026</td>
+                                    <td class="td-mono td-bold" data-val="8.0">⭐⭐⭐⭐⭐⭐⭐⭐☆☆ <span style="font-weight:400; opacity:0.6;">(8/10)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-bold">Whiplash</td>
+                                    <td class="td-mono" data-date="2025-03-18">18-03-2025</td>
+                                    <td class="td-mono td-bold" data-val="9.5">⭐⭐⭐⭐⭐⭐⭐⭐⭐☆ <span style="font-weight:400; opacity:0.6;">(9.5/10)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="td-bold">The Dark Knight</td>
+                                    <td class="td-mono" data-date="2024-12-25">25-12-2024</td>
+                                    <td class="td-mono td-bold" data-val="7.5">⭐⭐⭐⭐⭐⭐⭐☆☆☆ <span style="font-weight:400; opacity:0.6;">(7.5/10)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+    <!-- LIGHTWEIGHT NATIVE SORT ENGINE -->
+    <script>
+        let sortDirections = [true, true, true]; // Tracks asc/desc order for each column
+
+        function sortTable(colIndex, type) {
+            const table = document.getElementById("movieTable");
+            const rows = Array.from(table.querySelectorAll("tbody tr"));
+            const isAscending = sortDirections[colIndex];
+            
+            rows.sort((rowA, rowB) => {
+                let cellA = rowA.cells[colIndex];
+                let cellB = rowB.cells[colIndex];
+                
+                let valA, valB;
+                
+                if (type === 'num') {
+                    valA = parseFloat(cellA.getAttribute('data-val'));
+                    valB = parseFloat(cellB.getAttribute('data-val'));
+                    return isAscending ? valA - valB : valB - valA;
+                } else if (type === 'date') {
+                    valA = new Date(cellA.getAttribute('data-date'));
+                    valB = new Date(cellB.getAttribute('data-date'));
+                    return isAscending ? valA - valB : valB - valA;
+                } else {
+                    valA = cellA.innerText.toLowerCase();
+                    valB = cellB.innerText.toLowerCase();
+                    return isAscending ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                }
+            });
+            
+            // Re-append sorted records to DOM
+            const tbody = table.querySelector("tbody");
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+            
+            // Flip ordering flag for the next execution click
+            sortDirections[colIndex] = !isAscending;
+        }
+    </script>
+</body>
+</html>
