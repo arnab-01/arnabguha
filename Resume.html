@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Resume Grid Layout --- */
+        .resume-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        /* Freezes the title on desktop view */
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .section-headline {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin: 50px 0 25px 0;
+            border-bottom: 2px dashed var(--text-main);
+            padding-bottom: 8px;
+        }
+
+        .section-headline:first-of-type { margin-top: 0; }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            display: block;
+            font-weight: 800;
+        }
+
+        /* --- Structural Resume Blocks --- */
+        .resume-block {
+            margin-bottom: 35px;
+        }
+
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .block-title {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .block-meta {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #475569;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .resume-block p {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 700px;
+            margin-bottom: 10px;
+        }
+
+        .resume-bullets {
+            list-style: none;
+            max-width: 700px;
+        }
+
+        .resume-bullets li {
+            position: relative;
+            font-size: 1.05rem;
+            color: #334155;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        .resume-bullets li::before {
+            content: "◦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cobalt);
+            font-weight: 800;
+        }
+
+        /* --- Tag Layouts --- */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 700px;
+            margin-top: 8px;
+        }
+
+        .skill-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+            padding: 4px 10px;
+            border-radius: 0px;
+        }
+
+        .skill-tag.priority {
+            border-color: var(--accent-cobalt);
+            color: var(--accent-cobalt);
+        }
+
+        .project-link {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--accent-cobalt);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .resume-layout { grid-template-columns: 1fr; }
+            .title-wrapper { position: static; }
+            .block-header { flex-direction: column; }
+            .block-meta { text-align: left; margin-top: 4px; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">[About]</a></li>
+                    <li><a href="journey.html">[Journey]</a></li>
+                    <li><a href="writings.html">[Writings]</a></li>
+                    <li><a href="coffee.html">[Coffee]</a></li>
+                    <li><a href="favourites.html">[Favourites]</a></li>
+                    <li><a href="resume.html" class="active">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+        	    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="resume-layout">
+                <div class="title-wrapper">
+                    <h1>MY FILE.<br>RESUME.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <!-- SUMMARY -->
+                    <div class="resume-block">
+                        <span class="subtitle">Brief // Executive Profile</span>
+                        <p style="font-size: 1.1rem; color: var(--text-main);">
+                            CFA Level I cleared (Feb 2026), and CFA Level II Candidate with experience in equity valuation, portfolio analytics, and quantitative modeling. Built DCF/FCFF models, Monte Carlo simulations (10,000+ iterations), and data-driven dashboards to support investment decisions. Basic foundation in financial econometrics (CAPM, ARIMA, GARCH) and risk analysis. Working as a Senior Executive in Motilal Oswal AMC in the Product Team.
+                        </p>
+                    </div>
+
+                    <!-- EXPERIENCE -->
+                    <h2 class="section-headline">Experience</h2>
+                    
+                    <div class="resume-block">
+                        <div class="block-header">
+                            <h3 class="block-title">Motilal Oswal AMC</h3>
+                            <span class="block-meta">Mumbai, India<br>Present</span>
+                        </div>
+                        <span class="subtitle" style="color: var(--text-main);">Senior Executive — Product Team (Active Mutual Funds)</span>
+                        <ul class="resume-bullets" style="margin-top: 10px;">
+                            <li>Managing dynamic operational workflows within the active asset management infrastructure.</li>
+                            <li>Synthesizing market intelligence and portfolio variables to back institutional execution strategies.</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-block">
+                        <div class="block-header">
+                            <h3 class="block-title">Renaissance Investments</h3>
+                            <span class="block-meta">Mumbai, India<br>June 2025 – July 2025</span>
+                        </div>
+                        <span class="subtitle" style="color: var(--text-main);">Intern — Valuation and Strategic Analysis</span>
+                        <ul class="resume-bullets" style="margin-top: 10px;">
+                            <li>Joined boutique equity firm to analyze India’s AMC industry, assessing growth drivers and regional penetration (T30 vs. B30).</li>
+                            <li>Evaluated 4 listed AMCs (HDFC, Nippon, UTI, Aditya Birla) through valuation, strategy benchmarking, and scenario modeling.</li>
+                            <li>Built 4 DCF & FCFF models, 10+ Power BI dashboards, and Python-based Monte Carlo simulations (10,000 iterations, 3Y/5Y horizons) using AUM, PAT, and cost-ratio data. Conducted secondary research using AMFI, company reports, and financial literacy indices to link regional awareness with mutual fund penetration.</li>
+                            <li>Identified Nippon AMC as top pick with projected CAGR of 12.75% (5Y), B30 equity AUM share of 13.6%, and superior efficiency (ROE 30.5%, ROCE 41%); findings presented to AVP and CIO.</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-block">
+                        <div class="block-header">
+                            <h3 class="block-title">ICICI Prudential AMC</h3>
+                            <span class="block-meta">Mumbai, India<br>May 2024 - July 2024</span>
+                        </div>
+                        <span class="subtitle" style="color: var(--text-main);">Intern — Equity Performance & Valuation</span>
+                        <ul class="resume-bullets" style="margin-top: 10px;">
+                            <li>Built FCFF valuation for Nippon AMC using Damodaran’s model (WACC, R&D, leases); projected 5Y cash-flow CAGR and benchmarked against peers.</li>
+                            <li>Analyzed 25+ years of Sensex data (10,000+ points) on PE, PB, and returns; quantified CAGR shifts during 6 crises, incl. -ve 40% in 2008–09 and +ve 18% post-1991.</li>
+                            <li>Segmented 500+ PE-ratio data points into valuation brackets via Excel, revealing 35% higher average returns in mid-range segments.</li>
+                            <li>Presented findings, linking market shocks to valuations and highlighting Sensex’s 12% long-run CAGR for portfolio modeling.</li>
+                        </ul>
+                    </div>
+
+                    <!-- PROJECTS -->
+                    <h2 class="section-headline">Projects</h2>
+
+                    <div class="resume-block">
+                        <div class="block-header">
+                            <h3 class="block-title">Consumer-Thematic Mutual Fund</h3>
+                            <a href="#" class="project-link">[More Detail →]</a>
+                        </div>
+                        <ul class="resume-bullets">
+                            <li>Designed Consuma Fund, a 10-stock portfolio aligned with India’s consumption megatrend (FMCG, autos, retail, services); forecasted 23.7% annualized returns and 384% median 5Y return via Monte Carlo.</li>
+                            <li>Modeled dynamic weight allocations across caps/sectors in Excel; simulated 5Y return distributions to test growth scenarios.</li>
+                            <li>Applied Treynor Ratio and volatility analytics; improved risk-adjusted returns by 15% using MPT.</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-block">
+                        <div class="block-header">
+                            <h3 class="block-title">Macro Risks & Pricing Interdependence</h3>
+                            <a href="#" class="project-link">[More Detail →]</a>
+                        </div>
+                        <ul class="resume-bullets">
+                            <li>Mapped a 10-year dataset to establish long-run pricing models, tracking how global futures shocks and currency fluctuations transmit directly into local asset valuations.</li>
+                            <li>Analyzed a major structural regime shift following global crises, discovering that external disruptions compress pricing channels and sharply amplify downstream foreign exchange risks.</li>
+                            <li>Isolated how macroeconomic uncertainty acts purely as a systematic volatility catalyst rather than shifting baseline asset values, providing critical data to guide downside portfolio hedging.</li>
+                        </ul>
+                    </div>
+
+                    <!-- EDUCATION -->
+                    <h2 class="section-headline">Education</h2>
+
+                    <div class="resume-block">
+                        <div class="block-header">
+                            <h3 class="block-title">FLAME School of Business</h3>
+                            <span class="block-meta">Pune, India<br>Aug 2022 - May 2026</span>
+                        </div>
+                        <span class="subtitle" style="color: var(--text-main);">Bachelor of Business Administration Hons — Finance Major</span>
+                        <p style="margin-top: 8px; font-size: 0.95rem; color: #475569;">
+                            <strong>Core Frameworks:</strong> Value-at-Risk (VaR), Stress Testing, Sensitivity & Scenario Analysis, Time Series Analysis (ARIMA, ARCH/GARCH), Regression Analysis, Monte Carlo Simulation, Valuation Models, Credit Risk.
+                        </p>
+                    </div>
+
+                    <div class="resume-block">
+                        <div class="block-header">
+                            <h3 class="block-title">The Millennium School</h3>
+                            <span class="block-meta">Lucknow, India<br>March 2020 - March 2022</span>
+                        </div>
+                        <span class="subtitle" style="color: var(--text-main);">11th and 12th Grade — Science (PCM & Computer Science)</span>
+                    </div>
+
+                    <!-- SKILLS -->
+                    <h2 class="section-headline">Skills</h2>
+
+                    <div class="resume-block">
+                        <span class="subtitle">Technical Stack</span>
+                        <div class="tag-container">
+                            <span class="skill-tag priority">Excel / VBA</span>
+                            <span class="skill-tag priority">PowerBI</span>
+                            <span class="skill-tag priority">Python</span>
+                            <span class="skill-tag">Matlab</span>
+                            <span class="skill-tag">Hi-Fi/Lo-Fi Web Design</span>
+                            <span class="skill-tag">Graphic Design</span>
+                        </div>
+                    </div>
+
+                    <div class="resume-block">
+                        <span class="subtitle">Core Competencies</span>
+                        <div class="tag-container">
+                            <span class="skill-tag">Ethical Judgement</span>
+                            <span class="skill-tag">Financial Storytelling</span>
+                            <span class="skill-tag">Data-Driven Decision Making</span>
+                            <span class="skill-tag">Client-Ready Reporting</span>
+                            <span class="skill-tag">Analytical Problem-Solving</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

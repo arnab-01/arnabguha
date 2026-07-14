@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Brewing Lab — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Layout --- */
+        .lab-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .back-hub {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--accent-cobalt);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-headline {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin: 50px 0 30px 0;
+            border-bottom: 2px dashed var(--text-main);
+            padding-bottom: 8px;
+        }
+
+        .section-headline:first-of-type { margin-top: 0; }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 800;
+        }
+
+        /* --- Tech Code Blocks --- */
+        .recipe-block {
+            margin-bottom: 45px;
+        }
+
+        .recipe-title {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .recipe-code {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            padding: 25px;
+            border-left: 4px solid var(--accent-cobalt);
+            margin-bottom: 15px;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        .lab-layout p {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 650px;
+        }
+
+        /* --- Gear Grid --- */
+        .gear-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .gear-card {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .gear-photo {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--text-main);
+            box-shadow: 4px 4px 0px var(--accent-cobalt);
+            background-color: #E2E8F0;
+        }
+
+        .gear-card h4 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .lab-layout { grid-template-columns: 1fr; }
+            .title-wrapper { position: static; }
+            .gear-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">[About]</a></li>
+                    <li><a href="../journey.html">[Journey]</a></li>
+                    <li><a href="../writings.html">[Writings]</a></li>
+                    <li><a href="../coffee.html" class="active">[Coffee]</a></li>
+                    <li><a href="../favourites.html">[Favourites]</a></li>
+                    <li><a href="../resume.html">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+                    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="lab-layout">
+                <div class="title-wrapper">
+                    <a href="../coffee.html" class="back-hub">← Coffee Directory</a>
+                    <h1>THE BREW.<br>LAB LOGS.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <!-- GEAR MATRIX -->
+                    <h2 class="section-headline">Physical Setup</h2>
+                    <div class="gear-grid">
+                        <div class="gear-card">
+                            <div class="gear-photo"></div>
+                            <div>
+                                <h4>Hario V60</h4>
+                                <span class="subtitle">Clarity Tool</span>
+                            </div>
+                        </div>
+                        <div class="gear-card">
+                            <div class="gear-photo"></div>
+                            <div>
+                                <h4>Aeropress</h4>
+                                <span class="subtitle">Body & Texture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EXTRACTION ROUTINES -->
+                    <h2 class="section-headline">Active Extractions</h2>
+
+                    <div class="recipe-block">
+                        <span class="subtitle">Routine #01 // Daily Precision</span>
+                        <h3 class="recipe-title">The V60 Standard Script</h3>
+                        <p style="margin-bottom: 15px;">My go-to blueprint for bright, light-minus origin roasts to capture maximum structural profile definition.</p>
+<div class="recipe-code">
+[PARAMETERS]
+Dose: 15.0 grams // Medium-Fine
+Yield: 225.0 grams (1:15 Ratio)
+Water Temp: 93°C // Low TDS Target
+
+[ pouring timeline ]
+0:00 - 0:45 | 45g Bloom (Intentional spin)
+0:45 - 1:15 | Pour up to 130g (Concentric circles)
+1:15 - 2:00 | Pour up to 225g (Central stream structural weight)
+2:00 - 2:45 | Final drawdown check // Flat bed target
+</div>
+                    </div>
+
+                    <div class="recipe-block">
+                        <span class="subtitle">Routine #02 // Immersive</span>
+                        <h3 class="recipe-title">The Aeropress Texture Method</h3>
+                        <p style="margin-bottom: 15px;">Engineered to emphasize sweetness, body, and heavy flavor metrics when switching out of pourover setups.</p>
+<div class="recipe-code">
+[PARAMETERS]
+Dose: 16.5 grams // Medium-Coarse
+Yield: 200.0 grams water
+Water Temp: 88°C 
+
+[ pouring timeline ]
+0:00 - 0:10 | Pour 200g instantly // Saturate all coffee particles
+0:10 - 0:20 | Stir aggressively for exactly 10 seconds
+0:20 - 1:30 | Fit cap, flip over, let steep in complete stillness
+1:30 - 2:00 | Slow, uniform press down over 30 seconds straight
+</div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

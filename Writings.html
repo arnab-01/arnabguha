@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writings — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Writings Layout --- */
+        .writings-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        /* --- Article Row Elements --- */
+        .article-card {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+            align-items: start;
+        }
+
+        .article-photo {
+            width: 160px;
+            height: 160px;
+            aspect-ratio: 1 / 1;
+            border: 3px solid var(--text-main);
+            box-shadow: 5px 5px 0px var(--accent-cobalt);
+            background-color: #E2E8F0;
+            object-fit: cover;
+        }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 800;
+        }
+
+        .article-title {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .article-title a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .article-title a:hover {
+            color: var(--accent-cobalt);
+        }
+
+        .article-excerpt {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 600px;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .writings-layout { grid-template-columns: 1fr; }
+            .article-card { grid-template-columns: 1fr; gap: 20px; }
+            .title-wrapper { position: static; }
+            h1 { font-size: 3rem; }
+            .article-photo { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">[About]</a></li>
+                    <li><a href="journey.html">[Journey]</a></li>
+                    <li><a href="writings.html" class="active">[Writings]</a></li>
+                    <li><a href="coffee.html">[Coffee]</a></li>
+                    <li><a href="favourites.html">[Favourites]</a></li>
+                    <li><a href="resume.html">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+        	    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="writings-layout">
+                <div class="title-wrapper">
+                    <h1>ESSAYS &<br>LOGS.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <!-- PLACEHOLDER ARTICLE 01 -->
+                    <div class="article-card">
+                        <!-- Replace src with an image or use the placeholder box -->
+                        <div class="article-photo"></div>
+                        <div class="article-text">
+                            <span class="subtitle">July 2026 // Asset Management</span>
+                            <h2 class="article-title"><a href="#">A Deep Dive into India's Mutual Fund Ecosystem →</a></h2>
+                            <p class="article-excerpt">An analysis covering the structural shift of domestic capital into market-linked instruments. Breaking down regional AUM penetration metrics, execution velocity profiles across dominant AMCs, and data modeling insights from the retail investor boom.</p>
+                        </div>
+                    </div>
+
+                    <!-- PLACEHOLDER ARTICLE 02 -->
+                    <div class="article-card">
+                        <div class="article-photo"></div>
+                        <div class="article-text">
+                            <span class="subtitle">May 2026 // Roastery Logs</span>
+                            <h2 class="article-title"><a href="#">Parameters of Extraction: Sourcing and Brewing Rituals →</a></h2>
+                            <p class="article-excerpt">A tactical journal outlining the precision parameters required to drop time constraints using specialty coffee. Tracking elevation variables and processing profiles using a custom manual V60 and Aeropress grid approach.</p>
+                        </div>
+                    </div>
+
+                    <!-- PLACEHOLDER ARTICLE 03 -->
+                    <div class="article-card">
+                        <div class="article-photo"></div>
+                        <div class="article-text">
+                            <span class="subtitle">March 2026 // Structural Execution</span>
+                            <h2 class="article-title"><a href="#">The Adaptability Blueprint: Lessons from a Transient Upbringing →</a></h2>
+                            <p class="article-excerpt">A reflection on the internal strategies engineered when forced to transition across multiple contrasting geographies and frameworks during formative micro-chapters. Mapping childhood adjustments directly onto institutional analytical mindsets.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

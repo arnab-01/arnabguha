@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Profile & Hero --- */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        /* Freezes the title on desktop */
+        .profile-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        /* --- Content Styling --- */
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 800;
+        }
+
+        .chapter-title {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .chapter-title a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .chapter-title a:hover {
+            color: var(--accent-cobalt);
+        }
+
+        .content-block {
+            margin-bottom: 50px;
+            border-left: 2px solid var(--text-main);
+            padding-left: 20px;
+            transition: border-color 0.2s ease;
+        }
+
+        .content-block:hover {
+            border-left-color: var(--accent-cobalt);
+        }
+
+        .content-block p {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 700px;
+        }
+
+        /* --- Philosophy Feature Box --- */
+        .philosophy-box {
+            position: relative;
+            border: 2px solid var(--text-main);
+            padding: 50px 40px;
+            margin: 80px 0 60px 0;
+            background: transparent;
+        }
+
+        .philosophy-badge {
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            background: var(--bg-color);
+            padding: 0 10px;
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .philosophy-quote {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2.8rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .highlight-cobalt { color: var(--accent-cobalt); }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .hero-section { grid-template-columns: 1fr; }
+            .profile-wrapper { position: static; }
+            h1 { font-size: 3rem; }
+            .philosophy-quote { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">[About]</a></li>
+                    <li><a href="journey.html" class="active">[Journey]</a></li>
+                    <li><a href="writings.html">[Writings]</a></li>
+                    <li><a href="coffee.html">[Coffee]</a></li>
+                    <li><a href="favourites.html">[Favourites]</a></li>
+                    <li><a href="resume.html">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+        	    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <div class="profile-wrapper">
+                    <h1>MY🗺️<br>JOURNEY.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <!-- CHAPTER 01 -->
+                    <div class="content-block">
+                        <span class="subtitle">Chapter 01 // Roots</span>
+                        <h2 class="chapter-title"><a href="chapters/chapter-01.html">Life as an army brat →</a></h2>
+                        <p>Moving through 7 schools across 5 states. A chaotic, brilliant masterclass in adapting on the fly, learning to read new social landscapes, and gathering a lifetime of stories from Lansdowne to Trivandrum.</p>
+                    </div>
+
+                    <!-- CHAPTER 02 -->
+                    <div class="content-block">
+                        <span class="subtitle">Chapter 02 // Hurdles</span>
+                        <h2 class="chapter-title"><a href="chapters/chapter-02.html">Neurofibromatosis and Scoliosis →</a></h2>
+                        <p>Facing down a heavy physical diagnosis at age 11 that completely derailed my active sports life. The long path through years of inactivity, confronting deep physical fears, and ultimately reclaiming my resilience in the open water.</p>
+                    </div>
+
+                    <!-- CHAPTER 03 -->
+                    <div class="content-block">
+                        <span class="subtitle">Chapter 03 // Profession</span>
+                        <h2 class="chapter-title"><a href="chapters/chapter-03.html">How and Why did i get into finance →</a></h2>
+                        <p>The turning points, structural frameworks, and core economic models that drew me into the world of asset management. Moving from academic project theories to real-world execution on active mutual funds.</p>
+                    </div>
+
+                    <!-- CHAPTER 04 -->
+                    <div class="content-block">
+                        <span class="subtitle">Chapter 04 // Balance</span>
+                        <h2 class="chapter-title"><a href="chapters/chapter-04.html">My hobbies →</a></h2>
+                        <p>The intentional routines that keep me grounded outside the office. Finding complete focus and mental stillness, from pushing parameters in the pool to physical conditioning.</p>
+                    </div>
+
+                    <!-- CHAPTER 05 -->
+                    <div class="content-block">
+                        <span class="subtitle">Chapter 05 // Fixations</span>
+                        <h2 class="chapter-title"><a href="chapters/chapter-05.html">More into Coffee →</a></h2>
+                        <p>A deep dive into my ultimate sensory hobby. The detailed breakdown of sourcing regional Indian beans, monitoring roaster parameters, and tracking extractions to completely slow down time.</p>
+                    </div>
+
+                    <!-- CHAPTER 06 -->
+                    <div class="content-block">
+                        <span class="subtitle">Chapter 06 // Horizon</span>
+                        <h2 class="chapter-title"><a href="chapters/chapter-06.html">Looking ahead →</a></h2>
+                        <p>The next phase of execution. Managing immediate milestones across active asset management, pushing hard through the upcoming CFA levels, and preparing for the open waters of the Oceanman race.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PHILOSOPHY FEATURE BOX -->
+            <div class="philosophy-box">
+                <div class="philosophy-badge">NAVAL RAVIKANT</div>
+                <div class="philosophy-quote">
+                    Escape competition through <span class="highlight-cobalt">authenticity</span>. No one can compete with you on being you.
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

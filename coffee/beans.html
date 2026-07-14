@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Beans Log — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header (Adjusted Relative Paths) --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Beans Layout --- */
+        .beans-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .back-hub {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--accent-cobalt);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-headline {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin: 50px 0 30px 0;
+            border-bottom: 2px dashed var(--text-main);
+            padding-bottom: 8px;
+        }
+
+        .section-headline:first-of-type { margin-top: 0; }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 800;
+        }
+
+        /* --- Current Rotation Feature Block --- */
+        .current-rotation-box {
+            border: 3px solid var(--text-main);
+            padding: 30px;
+            margin-bottom: 40px;
+            background: transparent;
+            box-shadow: 6px 6px 0px var(--accent-cobalt);
+        }
+
+        /* --- Bean Index Cards --- */
+        .bean-card {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .bean-photo {
+            width: 140px;
+            height: 140px;
+            aspect-ratio: 1 / 1;
+            border: 3px solid var(--text-main);
+            box-shadow: 5px 5px 0px var(--text-main);
+            background-color: #E2E8F0;
+            object-fit: cover;
+        }
+
+        .bean-title {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        /* --- Parameter Specs Grid --- */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 12px 0;
+            background: #F1F5F9;
+            padding: 12px;
+            border: 1px solid #CBD5E1;
+        }
+
+        .spec-item {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .spec-item strong {
+            color: var(--text-main);
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .bean-notes {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 600px;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .beans-layout { grid-template-columns: 1fr; }
+            .title-wrapper { position: static; }
+            .bean-card { grid-template-columns: 1fr; gap: 20px; }
+            .bean-photo { width: 120px; height: 120px; }
+            .specs-grid { grid-template-columns: 1fr; gap: 8px; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">[About]</a></li>
+                    <li><a href="../journey.html">[Journey]</a></li>
+                    <li><a href="../writings.html">[Writings]</a></li>
+                    <li><a href="../coffee.html" class="active">[Coffee]</a></li>
+                    <li><a href="../favourites.html">[Favourites]</a></li>
+                    <li><a href="../resume.html">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+                    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="beans-layout">
+                <div class="title-wrapper">
+                    <a href="../coffee.html" class="back-hub">← Coffee Directory</a>
+                    <h1>THE BEANS.<br>INDEX.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <!-- CURRENT ROTATION -->
+                    <h2 class="section-headline">Current Rotation</h2>
+                    <div class="current-rotation-box">
+                        <span class="subtitle">Active Batch</span>
+                        <h3 class="bean-title" style="font-size: 2rem; margin-bottom: 4px;">Sandalwood Estate</h3>
+                        <span class="subtitle" style="color: var(--text-main); margin-bottom: 12px;">Blue Tokai Coffee Roasters</span>
+                        
+                        <div class="specs-grid" style="background: rgba(37, 99, 235, 0.03); border-color: rgba(37, 99, 235, 0.2);">
+                            <div class="spec-item"><strong>Process</strong>Washed</div>
+                            <div class="spec-item"><strong>Roast Profile</strong>Light Minus</div>
+                            <div class="spec-item"><strong>Elevation</strong>1,150 MASL</div>
+                        </div>
+                        <p class="bean-notes" style="margin-top: 12px;">
+                            My absolute favorite batch profile. It offers incredibly clean, distinct structural clarity with sharp citrus top notes, balancing out down into a deep, refined sandalwood and tea-like finish that works beautifully on pour-overs.
+                        </p>
+                    </div>
+
+                    <!-- HISTORICAL REGISTRY -->
+                    <h2 class="section-headline">The Archive</h2>
+
+                    <!-- BEAN ENTRY 01 -->
+                    <div class="bean-card">
+                        <div class="bean-photo"></div>
+                        <div class="fave-text">
+                            <span class="subtitle">Batch #02 // Producer</span>
+                            <h3 class="bean-title">Attikan Estate</h3>
+                            
+                            <div class="specs-grid">
+                                <div class="spec-item"><strong>Process</strong>Natural</div>
+                                <div class="spec-item"><strong>Roast Profile</strong>Medium</div>
+                                <div class="spec-item"><strong>Elevation</strong>1,340 MASL</div>
+                            </div>
+                            
+                            <p class="bean-notes">
+                                A classic, heavy-bodied profile with bold dark chocolate and roasted nut undertones. Low structural acidity makes it highly reliable when running experimental adjustments on manual extractions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- BEAN ENTRY 02 -->
+                    <div class="bean-card">
+                        <div class="bean-photo"></div>
+                        <div class="fave-text">
+                            <span class="subtitle">Batch #03 // Producer</span>
+                            <h3 class="bean-title">Riverdale Estate</h3>
+                            
+                            <div class="specs-grid">
+                                <div class="spec-item"><strong>Process</strong>Anaerobic Natural</div>
+                                <div class="spec-item"><strong>Roast Profile</strong>Light</div>
+                                <div class="spec-item"><strong>Elevation</strong>1,450 MASL</div>
+                            </div>
+                            
+                            <p class="bean-notes">
+                                An intense, fruit-forward batch developed through extended fermentation protocols. Shows a sharp complexity highlighting distinct tropical berries and a bright, punchy wine-like acidity.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

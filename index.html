@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Profile & Hero --- */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .profile-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-cobalt);
+            background-color: #E2E8F0; /* Placeholder color */
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        /* --- Content Styling --- */
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 800;
+        }
+
+        .content-block {
+            margin-bottom: 40px;
+        }
+
+        .content-block p {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 700px;
+        }
+
+        /* --- Philosophy Feature Box --- */
+        .philosophy-box {
+            position: relative;
+            border: 2px solid var(--text-main);
+            padding: 50px 40px;
+            margin: 80px 0 60px 0;
+            background: transparent;
+        }
+
+        .philosophy-badge {
+            position: absolute;
+            top: -12px;
+            left: 25px;
+            background: var(--bg-color);
+            padding: 0 10px;
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .philosophy-quote {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2.8rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .highlight-cobalt { color: var(--accent-cobalt); }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .hero-section { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+		<nav>
+    			<ul>
+     				<li><a href="index.html" class="active">[About]</a></li>
+        			<li><a href="journey.html">[Journey]</a></li>
+       				<li><a href="writings.html">[Writings]</a></li>
+       				<li><a href="coffee.html">[Coffee]</a></li>
+      				<li><a href="favourites.html">[Favourites]</a></li>
+       				<li><a href="resume.html">[Resume]</a></li>
+       				<li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+        	   		<li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+    			</ul>
+		</nav>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <div class="profile-wrapper">
+                    <!-- Replace 'photo.jpg' with your actual image path -->
+                    <img src="images/photo.jpeg" alt="Arnab Guha" class="profile-photo">
+                    <h1>HEY👋,<br>I'M ARNAB.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <div class="content-block">
+                        <span class="subtitle">01 // Current Focus</span>
+                        <p>By day, I work as a Senior Product Executive in the Active Mutual Funds team at Motilal Oswal AMC while grinding through my CFA Level II preparation. Being relatively new to the space, my immediate focus is just to sit back, listen, and absorb everything I can from the veterans around me. I like to keep things straightforward, practical, and heavily execution-oriented.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <span class="subtitle">02 // The Foundation</span>
+                        <p>But nobody ever built a memorable personal site by just pasting their job description. The real foundation started much earlier. Growing up in a military family meant my childhood was distributed across 7 schools and 5 states, giving me a masterclass in adapting on the fly. Whether it was trekking down a mountainside just to reach the school playground in Lansdowne (so I can actually tell my kids "I had to climb down mountains back in my days" XD), trying to somehow adapt in a completely Malayalam-speaking class in Trivandrum, or navigating a massive cultural shift in Bihar, I was constantly figuring things out as I went.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <span class="subtitle">03 // Resilience & Water</span>
+                        <p>That adaptability was put to the test when I was 11 and diagnosed with scoliosis. In an instant, I had to leave tennis and speed skating—both sports I absolutely loved. From 11 to 18, I was completely out of touch with each and every sport, becoming extremely fat and inactive. The turning point hit after my first year of college during a trip to the US. I had a month in my hand and access to a good pool, so I decided to teach myself how to swim. The catch? Water was my single biggest fear. Channeling my inner Dory ("Just keep swimming"), I faced it down. Swimming became something I truly loved, and now I am currently preparing for Oceanman.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <span class="subtitle">04 // Rituals</span>
+                        <p>When I need to unplug and slow the clock down, I brew coffee. Sandalwood Estate from Blue Tokai is 100% my favourite, and I love using the Aeropress and V60. The absolute mental concentration and effort it takes to nail the process actually helps me breathe and wind down.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <span class="subtitle">05 // Core Values</span>
+                        <p>At the end of the day, I am shaped far more by my roots than my resume. For me, family is everything. Everyone has a different dynamic, but I truly believe I am blessed to have such a close, loving family. This net gives me the strength to jump as high as possible. Icarus flew too close to the sun and he fell, but he wouldn't have drowned if there was a safety net waiting to catch him. Knowing they are down there giving me a safe place to land is the exact reason I have the confidence to push my limits.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PHILOSOPHY FEATURE BOX -->
+            <div class="philosophy-box">
+                <div class="philosophy-badge">NAVAL RAVIKANT</div>
+                <div class="philosophy-quote">
+                    Escape competition through <span class="highlight-cobalt">authenticity</span>. No one can compete with you on being you.
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cafe Directory — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Layout --- */
+        .directory-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .back-hub {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--accent-cobalt);
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-headline {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin: 50px 0 30px 0;
+            border-bottom: 2px dashed var(--text-main);
+            padding-bottom: 8px;
+        }
+
+        .section-headline:first-of-type { margin-top: 0; }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 800;
+        }
+
+        /* --- Directory Cards --- */
+        .cafe-card {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .cafe-photo {
+            width: 140px;
+            height: 140px;
+            aspect-ratio: 1 / 1;
+            border: 3px solid var(--text-main);
+            box-shadow: 5px 5px 0px var(--accent-cobalt);
+            background-color: #E2E8F0;
+            object-fit: cover;
+        }
+
+        .cafe-title {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 10px 0;
+            background: #F1F5F9;
+            padding: 10px;
+            border: 1px solid #CBD5E1;
+        }
+
+        .spec-item {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .spec-item strong {
+            color: var(--text-main);
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .cafe-text p {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 600px;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .directory-layout { grid-template-columns: 1fr; }
+            .title-wrapper { position: static; }
+            .cafe-card { grid-template-columns: 1fr; gap: 20px; }
+            .cafe-photo { width: 120px; height: 120px; }
+            .specs-grid { grid-template-columns: 1fr; gap: 8px; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">[About]</a></li>
+                    <li><a href="../journey.html">[Journey]</a></li>
+                    <li><a href="../writings.html">[Writings]</a></li>
+                    <li><a href="../coffee.html" class="active">[Coffee]</a></li>
+                    <li><a href="../favourites.html">[Favourites]</a></li>
+                    <li><a href="../resume.html">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+                    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="directory-layout">
+                <div class="title-wrapper">
+                    <a href="../coffee.html" class="back-hub">← Coffee Directory</a>
+                    <h1>THE CAFE.<br>ROUTINGS.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <!-- CHAPTER: MUMBAI -->
+                    <h2 class="section-headline">Mumbai Chapter</h2>
+                    
+                    <div class="cafe-card">
+                        <div class="cafe-photo"></div>
+                        <div class="cafe-text">
+                            <span class="subtitle">Spot #01</span>
+                            <h3 class="cafe-title">Subko Coffee Roasters</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item"><strong>Standard Bench Order</strong>Flat White / Pourover</div>
+                                <div class="spec-item"><strong>Vibe & Workflow</strong>High Energy, Industrial, Premium</div>
+                            </div>
+                            <p>Exceptional consistency on roasted parameters. While it can get crowded over peak hours, the extraction accuracy is completely top-tier. A solid destination to check out their latest regional micro-lots.</p>
+                        </div>
+                    </div>
+
+                    <div class="cafe-card">
+                        <div class="cafe-photo"></div>
+                        <div class="cafe-text">
+                            <span class="subtitle">Spot #02</span>
+                            <h3 class="cafe-title">Blue Tokai Cafe</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item"><strong>Standard Bench Order</strong>V60 Manual Pourover</div>
+                                <div class="spec-item"><strong>Vibe & Workflow</strong>Minimalist, Quiet, High Productivity</div>
+                            </div>
+                            <p>My go-to structural workspace sandbox. Perfect baseline ambient music and reliable seating grids make it an outstanding environment to plug in, load up Obsidian vaults, and execute deep analytical sessions.</p>
+                        </div>
+                    </div>
+
+                    <!-- CHAPTER: PUNE -->
+                    <h2 class="section-headline">Pune Chapter</h2>
+                    
+                    <div class="cafe-card">
+                        <div class="cafe-photo"></div>
+                        <div class="cafe-text">
+                            <span class="subtitle">Spot #03</span>
+                            <h3 class="cafe-title">Specialty Café Placeholder</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item"><strong>Standard Bench Order</strong>Double Shot Espresso</div>
+                                <div class="spec-item"><strong>Vibe & Workflow</strong>Relaxed, Student-friendly, Open Air</div>
+                            </div>
+                            <p>A reliable location closer to academic hubs to grab a clean black coffee dose, map out project distribution sprint boards, or hold strategic team syncs outside campus walls.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

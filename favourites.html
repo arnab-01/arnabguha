@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourites — Arnab Guha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #F9FAFC;
+            --grid-line: rgba(37, 99, 235, 0.06);
+            --text-main: #0F172A;
+            --accent-cobalt: #2563EB;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* --- Global Header --- */
+        header { margin-bottom: 60px; }
+        .site-id { font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; }
+        .site-id span { color: var(--accent-cobalt); }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--text-main); padding-bottom: 15px; }
+        nav a { text-decoration: none; color: var(--text-main); font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+        nav a.active { color: var(--accent-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+
+        /* --- Favourites Layout --- */
+        .favourites-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: start;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 40px;
+        }
+
+        h1 {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 4rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .section-headline {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin: 50px 0 30px 0;
+            border-bottom: 2px dashed var(--text-main);
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-headline a {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-cobalt);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .section-headline a:hover {
+            text-decoration: underline;
+        }
+
+        .section-headline:first-of-type { margin-top: 0; }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cobalt);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 800;
+        }
+
+        /* --- Standardized Card Row --- */
+        .fave-card {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .fave-photo {
+            width: 140px;
+            height: 140px;
+            aspect-ratio: 1 / 1;
+            border: 3px solid var(--text-main);
+            box-shadow: 5px 5px 0px var(--accent-cobalt);
+            background-color: #E2E8F0;
+            object-fit: cover;
+        }
+
+        .fave-title {
+            font-family: var(--font-header);
+            font-weight: 800;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .fave-excerpt {
+            font-size: 1.05rem;
+            color: #334155;
+            max-width: 600px;
+        }
+
+        /* --- Music Shelf --- */
+        .music-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        footer {
+            margin-top: 80px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .favourites-layout { grid-template-columns: 1fr; }
+            .title-wrapper { position: static; }
+            .fave-card { grid-template-columns: 1fr; gap: 20px; }
+            .fave-photo { width: 120px; height: 120px; }
+            h1 { font-size: 3rem; }
+            .section-headline { flex-direction: column; align-items: flex-start; gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="site-id"><span>🌊🌊🌊</span> Arnab Guha</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">[About]</a></li>
+                    <li><a href="journey.html">[Journey]</a></li>
+                    <li><a href="writings.html">[Writings]</a></li>
+                    <li><a href="coffee.html">[Coffee]</a></li>
+                    <li><a href="favourites.html" class="active">[Favourites]</a></li>
+                    <li><a href="resume.html">[Resume]</a></li>
+                    <li><a href="https://x.com/Arnb_01" target="_blank">[X]</a></li>
+                    <li><a href="https://www.linkedin.com/in/oceanarnabguha/" target="_blank">[LinkedIn]</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="favourites-layout">
+                <div class="title-wrapper">
+                    <h1>MY<br>FAVES.</h1>
+                </div>
+
+                <div class="content-body">
+                    
+                    <!-- SECTION: MOVIES -->
+                    <h2 class="section-headline">Movies <a href="All Movies/movies.html">[View Complete Bank →]</a></h2>
+                    
+                    <!-- Movie 01: Project Hail Mary -->
+                    <div class="fave-card">
+                        <img src="images/movie1.jpg" alt="Project Hail Mary Movie Poster" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Cinema 01</span>
+                            <h3 class="fave-title">Project Hail Mary</h3>
+                            <p class="fave-excerpt">An incredible masterclass in hard sci-fi problem solving. Compelling narrative pacing that makes isolated survival feel intensely gripping.</p>
+                        </div>
+                    </div>
+
+                    <!-- Movie 02: Inglourious Basterds -->
+                    <div class="fave-card">
+                        <img src="images/movie2.jpg" alt="Inglourious Basterds Movie Poster" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Cinema 02</span>
+                            <h3 class="fave-title">Inglourious Basterds</h3>
+                            <p class="fave-excerpt">Tarantino at his absolute sharpest. Masterful structural tension, flawless dialogue velocity, and pitch-black historical revisionism.</p>
+                        </div>
+                    </div>
+
+                    <!-- Movie 03: F1 Movie -->
+                    <div class="fave-card">
+                        <img src="images/movie3.jpg" alt="F1 Movie Poster" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Cinema 03</span>
+                            <h3 class="fave-title">F1 Movie</h3>
+                            <p class="fave-excerpt">Pure adrenaline captured on screen. Intense cinematography and precise audio engineering that perfectly translate high-stakes track dynamics.</p>
+                        </div>
+                    </div>
+
+                    <!-- Movie 04: Across the Spider-Verse -->
+                    <div class="fave-card">
+                        <img src="images/movie4.jpg" alt="Spider-Man: Across the Spider-Verse Movie Poster" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Cinema 04</span>
+                            <h3 class="fave-title">Across the Spider-Verse</h3>
+                            <p class="fave-excerpt">A breathtaking visual achievement. The complex, multi-layered animation style completely redefines the boundaries of modern comic storytelling.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION: ARTISTS -->
+                    <h2 class="section-headline">Artists</h2>
+                    
+                    <!-- Artist 01: Kendrick Lamar -->
+                    <div class="fave-card">
+                        <img src="images/artist1.jpg" alt="Kendrick Lamar Portrait" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Visuals 01</span>
+                            <h3 class="fave-title">Kendrick Lamar</h3>
+                            <p class="fave-excerpt">Unmatched cinematic lyricism and complex structural storytelling that redefines contemporary hip-hop.</p>
+                        </div>
+                    </div>
+
+                    <!-- Artist 02: Bruno Mars -->
+                    <div class="fave-card">
+                        <img src="images/artist2.jpg" alt="Bruno Mars Portrait" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Visuals 02</span>
+                            <h3 class="fave-title">Bruno Mars</h3>
+                            <p class="fave-excerpt">Pure performance excellence. Flawless vocal execution fused with an incredible sense of retro-funk showmanship.</p>
+                        </div>
+                    </div>
+
+                    <!-- Artist 03: Peter Cat Recording Co. -->
+                    <div class="fave-card">
+                        <img src="images/artist3.jpg" alt="Peter Cat Recording Co. Group Portrait" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Visuals 03</span>
+                            <h3 class="fave-title">Peter Cat Recording Co.</h3>
+                            <p class="fave-excerpt">A beautiful blend of gypsy jazz, psychedelic lounge music, and distinct velvet-toned songwriting.</p>
+                        </div>
+                    </div>
+
+                    <!-- Artist 04: Prateek Kuhad -->
+                    <div class="fave-card">
+                        <img src="images/artist4.jpg" alt="Prateek Kuhad Portrait" class="fave-photo">
+                        <div class="fave-text">
+                            <span class="subtitle">Visuals 04</span>
+                            <h3 class="fave-title">Prateek Kuhad</h3>
+                            <p class="fave-excerpt">Intimate, stripped-back indie pop melodies driven by incredibly raw and resonant storytelling.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION: BOOKS -->
+                    <h2 class="section-headline">Books</h2>
+                    <div class="fave-card">
+                        <div class="fave-photo"></div>
+                        <div class="fave-text">
+                            <span class="subtitle">Print 01</span>
+                            <h3 class="fave-title">Book Title One</h3>
+                            <p class="fave-excerpt">Core structural lessons, underlying perspectives, or mental frameworks gained from this layout.</p>
+                        </div>
+                    </div>
+                    <div class="fave-card">
+                        <div class="fave-photo"></div>
+                        <div class="fave-text">
+                            <span class="subtitle">Print 02</span>
+                            <h3 class="fave-title">Book Title Two</h3>
+                            <p class="fave-excerpt">Core structural lessons, underlying perspectives, or mental frameworks gained from this layout.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION: FOOD -->
+                    <h2 class="section-headline">Dishes / Food</h2>
+                    <div class="fave-card">
+                        <div class="fave-photo"></div>
+                        <div class="fave-text">
+                            <span class="subtitle">Taste 01</span>
+                            <h3 class="fave-title">Dish Title One</h3>
+                            <p class="fave-excerpt">Specific regional flavor components, preparation profiles, or cultural anchors associated with this selection.</p>
+                        </div>
+                    </div>
+
+                      <!-- SECTION: SONGS -->
+
+                    <h2 class="section-headline">Songs</h2>
+
+                    <div class="music-grid">
+
+                        <!-- Song 1: Interstellar Theme -->
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3RmFPuTTAjSQ2pbEd2j9oA?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        
+
+                        <!-- Song 2: Mockingbird -->
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/15Z1xuTPQjErBcsaFpunGg?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        
+
+                        <!-- Song 3: Fine Line -->
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3iVcZ5G6tvkXZkZKlMpIUs?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                        
+
+                        <!-- Song 4: Space Bound -->
+
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1tmqE0XFrDUnnioRc1apsb?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © June 2026 Arnab Guha. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
